@@ -1,2 +1,0 @@
-class RailwayStationController < ApplicationController
-end
