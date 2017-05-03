@@ -6,7 +6,7 @@
 </p>
 
 <p>
-  <% if @route.trains.present?%>
+  <% if @route.trains.present? %>
     На маршрут назначены следующие поезда:
     <ul><% @route.trains.each do |train| %>
       <li><%= train.number %></li>
@@ -17,7 +17,7 @@
 </p>
 
 <p>
-  <% if @route.railway_stations.present?%>
+  <% if @route.railway_stations.present? %>
     Список станций маршрута:
     <ul><% @route.railway_stations.each do |railway_station| %>
       <li><%= railway_station.number %></li>

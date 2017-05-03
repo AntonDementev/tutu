@@ -48,7 +48,6 @@ class RailwayStationsController < ApplicationController
     @railway_station.destroy
     respond_to do |format|
       format.html { redirect_to railway_stations_url, notice: 'Станция была успешно удалена.' }
-      format.json { head :no_content }
     end
   end
 
