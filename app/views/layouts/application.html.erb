@@ -9,8 +9,7 @@
   </head>
 
   <body>
-	<% site = 'http://localhost:3000' %>
-	<%= link_to 'Поезда', "#{site}/trains" %> | <%= link_to 'Маршруты', "#{site}/routes" %> | <%= link_to 'Станции', "#{site}/railway_stations" %>  
+	<%= link_to 'Поезда', trains_path %> | <%= link_to 'Маршруты', routes_path %> | <%= link_to 'Станции', railway_stations_path %>  
 	<hr>  
     <%= yield %>
     <hr>
