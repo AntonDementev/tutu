@@ -15,6 +15,17 @@
     <%= f.label :number %>
     <%= f.text_field :number %>
   </div>
+  
+  <div class="field">
+    <%= f.label :route, "Назначить маршрут:" %>
+    <%= f.collection_select :route_id, Route.all, :id, :title %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :route, "Установить на станцию:" %>
+    <%= f.collection_select :current_station_id, RailwayStation.all, :id, :title %>
+  </div>
+  
 
   <div class="actions">
     <%= f.submit %>

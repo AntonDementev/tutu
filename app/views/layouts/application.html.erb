@@ -9,6 +9,11 @@
   </head>
 
   <body>
+	<% site = 'http://localhost:3000' %>
+	<%= link_to 'Поезда', "#{site}/trains" %> | <%= link_to 'Маршруты', "#{site}/routes" %> | <%= link_to 'Станции', "#{site}/railway_stations" %>  
+	<hr>  
     <%= yield %>
+    <hr>
+    (с) 2017 Дементьев Антон. Учебный проект в онлайн-школе <%= link_to 'Thinknetica', 'http://www.thinknetica.com' %>.
   </body>
 </html>
