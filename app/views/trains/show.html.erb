@@ -21,33 +21,14 @@
   <% end %>
 </p>
 
-<%
-waggons1_amount = 0
-waggon1_places_amount_top = 0
-waggon1_places_amount_bot = 0
-waggons2_amount = 0
-waggon2_places_amount_top = 0
-waggon2_places_amount_bot = 0
-
-@train.waggons.each do |waggon|
-  if waggon.category_id == 1
-    waggons1_amount += 1
-    waggon1_places_amount_top += waggon.top_places
-    waggon1_places_amount_bot += waggon.bottom_places
-  elsif waggon.category_id == 2
-    waggons2_amount += 1
-    waggon2_places_amount_top += waggon.top_places
-    waggon2_places_amount_bot += waggon.bottom_places
-  end
-end
-%>
+<% @train.update_values %>
 <p>
-Купейных вагонов: <%= waggons1_amount %><br/>
-Плацкартных вагонов: <%= waggons2_amount %><br/>
-Верхних мест (купе): <%= waggon1_places_amount_top %><br/>
-Нижних мест (купе): <%= waggon1_places_amount_bot %><br/>
-Верхних мест (плацкарт): <%= waggon2_places_amount_top %><br/>
-Нижних мест (плацкарт): <%= waggon2_places_amount_bot %><br/>
+Купейных вагонов: <%= @train.waggons1_amount %><br/>
+Плацкартных вагонов: <%= @train.waggons2_amount %><br/>
+Верхних мест (купе): <%= @train.waggon1_places_amount_top %><br/>
+Нижних мест (купе): <%= @train.waggon1_places_amount_bot %><br/>
+Верхних мест (плацкарт): <%= @train.waggon2_places_amount_top %><br/>
+Нижних мест (плацкарт): <%= @train.waggon2_places_amount_bot %><br/>
 </p>
 
 <%= link_to 'Edit', edit_train_path(@train) %> |
