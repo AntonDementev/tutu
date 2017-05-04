@@ -13,5 +13,42 @@
   <% end %>
 </p>
 
+<p>
+  <% if @train.waggons.present?%>
+    Количество вагонов: <%= @train.waggons.size  %>
+  <% else %>
+    Вагонов нет
+  <% end %>
+</p>
+
+<%
+waggons1_amount = 0
+waggon1_places_amount_top = 0
+waggon1_places_amount_bot = 0
+waggons2_amount = 0
+waggon2_places_amount_top = 0
+waggon2_places_amount_bot = 0
+
+@train.waggons.each do |waggon|
+  if waggon.category_id == 1
+    waggons1_amount += 1
+    waggon1_places_amount_top += waggon.top_places
+    waggon1_places_amount_bot += waggon.bottom_places
+  elsif waggon.category_id == 2
+    waggons2_amount += 1
+    waggon2_places_amount_top += waggon.top_places
+    waggon2_places_amount_bot += waggon.bottom_places
+  end
+end
+%>
+<p>
+Купейных вагонов: <%= waggons1_amount %><br/>
+Плацкартных вагонов: <%= waggons1_amount %><br/>
+Верних мест (купе): <%= waggon1_places_amount_top %><br/>
+Нижних мест (купе): <%= waggon1_places_amount_bot %><br/>
+Верних мест (плацкарт): <%= waggon2_places_amount_top %><br/>
+Нижних мест (плацкарт): <%= waggon2_places_amount_bot %><br/>
+</p>
+
 <%= link_to 'Edit', edit_train_path(@train) %> |
 <%= link_to 'Back', trains_path %>

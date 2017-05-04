@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Number:</strong>
+  <%= @waggon.train.number %>
+</p>
+
+<p>
+  <% if @waggon.train.present?%>
+    Прицеплен к поезду: <%= @waggon.train.number  %>
+  <% else %>
+    К поезду не прицеплен
+  <% end %>
+</p>
+
+<p>
+  <% if  @waggon.category_id == 1 %>
+    Тип: Купе
+  <% elsif @waggon.category_id == 2 %>
+    Тип: Плацкарт
+  <% end %>
+</p>
+
+<p>
+Места:<br/>
+Верхние: <%= @waggon.top_places %><br/>
+Нижние: <%= @waggon.bottom_places %>
+</p>
+
+<%= link_to 'Edit', edit_waggon_path(@waggon) %> |
+<%= link_to 'Back', waggons_path %>
