@@ -4,28 +4,22 @@ class Train < ApplicationRecord
   
   has_many :tickets
   has_many :waggons
+    
+  def places_info(waggon_category_id)
+    waggons_amount = 0
+    places_top = 0
+    places_bottom = 0
   
-  attr_reader :waggons1_amount, :waggon1_places_amount_top, :waggon1_places_amount_bot, :waggons2_amount, :waggon2_places_amount_top, :waggon2_places_amount_bot
-  
-  def update_values
-    @waggons1_amount = 0
-    @waggon1_places_amount_top = 0
-    @waggon1_places_amount_bot = 0
-    @waggons2_amount = 0
-    @waggon2_places_amount_top = 0
-    @waggon2_places_amount_bot = 0
-
     waggons.each do |waggon|
-      if waggon.category_id == 1
-        @waggons1_amount += 1
-        @waggon1_places_amount_top += waggon.top_places
-        @waggon1_places_amount_bot += waggon.bottom_places
-      elsif waggon.category_id == 2
-        @waggons2_amount += 1
-        @waggon2_places_amount_top += waggon.top_places
-        @waggon2_places_amount_bot += waggon.bottom_places
+      if waggon.category_id == waggon_category_id
+        waggons_amount += 1
+        places_top += waggon.top_places
+        places_bottom += waggon.bottom_places
       end
     end
+    
+    { waggons_amount: waggons_amount, places_top: places_top, places_bottom: places_bottom }
+    
   end
   
 end
