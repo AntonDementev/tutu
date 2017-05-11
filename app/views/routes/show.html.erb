@@ -17,10 +17,11 @@
 </p>
 
 <p>
+  <!-- по порядковому номеру -->
   <% if @route.railway_stations.present? %>
     Список станций маршрута:
-    <ul><% @route.railway_stations.each do |railway_station| %>
-      <li><%= railway_station.number %></li>
+    <ul><% @route.railway_stations_routes.order(:station_number_in_route).each do |station_route| %>
+      <li><%= station_route.station_number_in_route %>. <%= station_route.railway_station.title %></li>
     <% end %></ul>
   <% else %>
     Список станций этого маршрута пока ещё не задан

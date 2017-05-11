@@ -1,11 +1,6 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Number:</strong>
-  <%= @waggon.train.number %>
-</p>
-
-<p>
   <% if @waggon.train.present?%>
     Прицеплен к поезду: <%= @waggon.train.number  %>
   <% else %>
@@ -13,19 +8,37 @@
   <% end %>
 </p>
 
+<% if @waggon.number.present?%>
 <p>
-  <% if  @waggon.category_id == 1 %>
-    Тип: Купе
-  <% elsif @waggon.category_id == 2 %>
-    Тип: Плацкарт
+  Порядковый номер:<br/>
+  <%= @waggon.number %>
+</p>
+<% end %>
+
+<p>
+  <% if  @waggon.type == "CoupeWaggon" %>
+    Тип: Купе<br/>
+    Места:<br/>
+    Верхние: <%= @waggon.top_places %><br/>
+    Нижние: <%= @waggon.bottom_places %>
+  <% elsif @waggon.type == "EconomyWaggon" %>
+    Тип: Плацкарт<br/>
+    Места:<br/>
+    Верхние: <%= @waggon.top_places %><br/>
+    Нижние: <%= @waggon.bottom_places %><br/>
+    Верхние боковые: <%= @waggon.top_side_places %><br/>
+    Нижние боковые: <%= @waggon.bottom_side_places %>
+  <% elsif @waggon.type == "SleepingWaggon" %>
+    Тип: СВ<br/>
+    Места:<br/>
+    Нижние: <%= @waggon.bottom_places %>
+  <% elsif @waggon.type == "SeatsWaggon" %>
+    Тип: Сиденья<br/>
+    Места:<br/>
+    Сидячие: <%= @waggon.seats_places %><br/>
   <% end %>
 </p>
 
-<p>
-Места:<br/>
-Верхние: <%= @waggon.top_places %><br/>
-Нижние: <%= @waggon.bottom_places %>
-</p>
 
 <%= link_to 'Edit', edit_waggon_path(@waggon) %> |
 <%= link_to 'Back', waggons_path %>

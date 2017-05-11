@@ -5,15 +5,26 @@
     <%= f.label :train, "Установить на поезд:" %>
     <%= f.collection_select :train_id, Train.all, :id, :number %>
 
+    <%= f.label :type, "Выбор типа вагона" %>
+    <%= f.radio_button :type, "CoupeWaggon" %> Купе
+    <%= f.radio_button :type, "EconomyWaggon" %> Плацкарт
+    <%= f.radio_button :type, "SleepingWaggon" %> СВ
+    <%= f.radio_button :type, "SeatsWaggon" %> Только сидячие места
+
     <%= f.label :top_places, "Верхние места" %>
     <%= f.number_field :top_places %>
 
     <%= f.label :bottom_places, "Нижние места" %>
     <%= f.number_field :bottom_places %>
     
-    <%= f.label :category_id, "Купе/Плацкарт" %>
-    <%= f.radio_button :category_id, 1 %>
-    <%= f.radio_button :category_id, 2 %>
+    <%= f.label :top_side_places, "Верхние боковые места" %>
+    <%= f.number_field :top_side_places %>
+
+    <%= f.label :bottom_side_places, "Нижние боковые места" %>
+    <%= f.number_field :bottom_side_places %>
+    
+    <%= f.label :seats_places, "Сидячие" %>
+    <%= f.number_field :seats_places %>
   </div>
   
 

@@ -4,22 +4,15 @@ class Train < ApplicationRecord
   
   has_many :tickets
   has_many :waggons
-    
-  def places_info(waggon_category_id)
-    waggons_amount = 0
-    places_top = 0
-    places_bottom = 0
   
+  def places_amount(waggon_type, places_type)
+    sum = 0
     waggons.each do |waggon|
-      if waggon.category_id == waggon_category_id
-        waggons_amount += 1
-        places_top += waggon.top_places
-        places_bottom += waggon.bottom_places
+      if waggon_type == waggon.type && waggon[places_type]
+        sum += waggon[places_type]
       end
     end
-    
-    { waggons_amount: waggons_amount, places_top: places_top, places_bottom: places_bottom }
-    
+    sum
   end
   
 end
