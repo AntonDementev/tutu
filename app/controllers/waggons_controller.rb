@@ -32,7 +32,7 @@ class WaggonsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @waggon.update(wagon_params)
+      if @waggon.update(waggon_params)
         format.html { redirect_to @waggon.becomes(Waggon), notice: 'Вагон был успешно обновлён.' }
       else
         format.html { render :edit }
