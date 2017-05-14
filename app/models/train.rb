@@ -6,13 +6,15 @@ class Train < ApplicationRecord
   has_many :waggons
   
   def places_amount(waggon_type, places_type)
-    sum = 0
-    waggons.each do |waggon|
-      if waggon_type == waggon.type && waggon[places_type]
-        sum += waggon[places_type]
-      end
+    waggons.where(type: waggon_type).sum(places_type)    
+  end
+  
+  def sorted_waggons
+    if head_to_tail
+      waggons.order(:number)
+    else
+      waggons.order("number DESC")
     end
-    sum
   end
   
 end

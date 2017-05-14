@@ -20,32 +20,26 @@ class RoutesController < ApplicationController
   def create
     @route = Route.new(route_params)
 
-    respond_to do |format|
-      if @route.save
-        format.html { redirect_to @route, notice: 'Маршрут был успешно создан.' }
-      else
-        format.html { render :new }
-      end
+    if @route.save
+      redirect_to @route, notice: 'Маршрут был успешно создан.'
+    else
+      render :new
     end
   end
 
 
   def update
-    respond_to do |format|
-      if @route.update(route_params)
-        format.html { redirect_to @route, notice: 'Маршрут был успешно обновлён.' }
-      else
-        format.html { render :edit }
-      end
+    if @route.update(route_params)
+      redirect_to @route, notice: 'Маршрут был успешно обновлён.'
+    else
+      render :edit
     end
   end
 
 
   def destroy
     @route.destroy
-    respond_to do |format|
-      format.html { redirect_to routes_url, notice: 'Маршрут был успешно удалён.' }
-    end
+    redirect_to routes_url, notice: 'Маршрут был успешно удалён.'
   end
 
   private

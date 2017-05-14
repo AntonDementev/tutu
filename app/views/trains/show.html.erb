@@ -25,15 +25,11 @@
 <p>
 <ul>
 Вагоны:
-<% if  @train.head_to_tail %>
-  <% @train.waggons.order(:number).each_with_index do |waggon, index| %>
-    <li><%= link_to "#{waggon.number} (#{waggon.type})", waggon.becomes(Waggon) %></li>
+
+  <% @train.sorted_waggons.each do |waggon| %>
+    <li><%= link_to "#{waggon.number} (#{waggon.type})", waggon_path(waggon) %></li>
   <% end %>
-<% else %>
-  <% @train.waggons.order("number DESC").each_with_index do |waggon, index| %>
-    <li><%= link_to "#{waggon.number} (#{waggon.type})", waggon.becomes(Waggon) %></li>
-  <% end %>
-<% end %>  
+
 </ul></p>
 
 <%= link_to 'Edit', edit_train_path(@train) %> |

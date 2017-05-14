@@ -16,28 +16,8 @@
 <% end %>
 
 <p>
-  <% case  @waggon.type  %>
-  <% when "CoupeWaggon" %>
-    Тип: Купе<br/>
-    Места:<br/>
-    Верхние: <%= @waggon.top_places %><br/>
-    Нижние: <%= @waggon.bottom_places %>
-  <% when "EconomyWaggon" %>
-    Тип: Плацкарт<br/>
-    Места:<br/>
-    Верхние: <%= @waggon.top_places %><br/>
-    Нижние: <%= @waggon.bottom_places %><br/>
-    Верхние боковые: <%= @waggon.top_side_places %><br/>
-    Нижние боковые: <%= @waggon.bottom_side_places %>
-  <% when "SleepingWaggon" %>
-    Тип: СВ<br/>
-    Места:<br/>
-    Нижние: <%= @waggon.bottom_places %>
-  <% when "SeatsWaggon" %>
-    Тип: Сиденья<br/>
-    Места:<br/>
-    Сидячие: <%= @waggon.seats_places %><br/>
-  <% end %>
+  <%= render ActiveSupport::Inflector.underscore(@waggon.type) %>
+
 </p>
 
 

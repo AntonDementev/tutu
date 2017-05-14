@@ -4,12 +4,10 @@
   <div class="field">
     <%= f.label :train, "Установить на поезд:" %>
     <%= f.collection_select :train_id, Train.all, :id, :number %>
+    
+    <%= f.label :type, "Выбор типа вагона:" %>
+    <%= f.select :type, [["Купе", "CoupeWaggon"], ["Плацкарт", "EconomyWaggon"], ["СВ", "SleepingWaggon"], ["Только сидячие места", "SeatsWaggon"]]  %>
 
-    <%= f.label :type, "Выбор типа вагона" %>
-    <%= f.radio_button :type, "CoupeWaggon" %> Купе
-    <%= f.radio_button :type, "EconomyWaggon" %> Плацкарт
-    <%= f.radio_button :type, "SleepingWaggon" %> СВ
-    <%= f.radio_button :type, "SeatsWaggon" %> Только сидячие места
 
     <%= f.label :top_places, "Верхние места" %>
     <%= f.number_field :top_places %>
