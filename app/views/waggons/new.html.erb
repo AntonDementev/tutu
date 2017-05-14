@@ -1,5 +1,5 @@
 <h1>Добавление вагона</h1>
 
-<%= render 'form', waggon: @waggon.becomes(Waggon) %>
+<%= render 'form', waggon: waggon_path(@waggon) %>
 
 <%= link_to 'Back', waggons_path %>
