@@ -23,32 +23,28 @@ class TrainsController < ApplicationController
   def create
     @train = Train.new(train_params)
 
-    respond_to do |format|
-      if @train.save
-        format.html { redirect_to @train, notice: 'Поезд был успешно создан.' }
-      else
-        format.html { render :new }
-      end
+    if @train.save
+      redirect_to @train, notice: 'Поезд был успешно создан.'
+    else
+      render :new
     end
   end
 
   # PATCH/PUT /trains/1
   def update
-    respond_to do |format|
-      if @train.update(train_params)
-        format.html { redirect_to @train, notice: 'Поезд был успешно обновлён.' }
-      else
-        format.html { render :edit }
-      end
+    if @train.update(train_params)
+      redirect_to @train, notice: 'Поезд был успешно обновлён.'
+    else
+      render :edit
     end
+
   end
 
   # DELETE /trains/1
   def destroy
     @train.destroy
-    respond_to do |format|
-      format.html { redirect_to trains_url, notice: 'Поезд был успешно удалён.' }
-    end
+
+    redirect_to trains_url, notice: 'Поезд был успешно удалён.'
   end
 
   private
@@ -59,6 +55,6 @@ class TrainsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def train_params
-      params.require(:train).permit(:number, :current_station_id, :route_id)
+      params.require(:train).permit(:number, :current_station_id, :route_id, :head_to_tail)
     end
 end

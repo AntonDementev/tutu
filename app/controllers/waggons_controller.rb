@@ -20,32 +20,26 @@ class WaggonsController < ApplicationController
   def create
     @waggon = Waggon.new(waggon_params)
 
-    respond_to do |format|
-      if @waggon.save
-        format.html { redirect_to @waggon, notice: 'Вагон был успешно создан.' }
-      else
-        format.html { render :new }
-      end
-    end
+    if @waggon.save
+      redirect_to waggon_path(@waggon), notice: 'Вагон был успешно создан.'
+    else
+      render :new
+    end       
   end
 
 
   def update
-    respond_to do |format|
-      if @waggon.update(waggon_params)
-        format.html { redirect_to @waggon, notice: 'Вагон был успешно обновлён.' }
-      else
-        format.html { render :edit }
-      end
+    if @waggon.update(waggon_params)
+      redirect_to waggon_path(@waggon), notice: 'Вагон был успешно обновлён.'
+    else
+      render :edit
     end
   end
 
 
   def destroy
     @waggon.destroy
-    respond_to do |format|
-      format.html { redirect_to waggons_url, notice: 'Вагон был успешно удалён.' }
-    end
+    redirect_to waggons_url, notice: 'Вагон был успешно удалён.'
   end
 
   private
@@ -56,7 +50,7 @@ class WaggonsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def waggon_params
-      params.require(:waggon).permit(:train_id, :category_id, :top_places, :bottom_places)
+      params.require(:waggon).permit(:train_id, :type, :top_places, :bottom_places, :top_side_places, :bottom_side_places, :seats_places)
     end
     
 

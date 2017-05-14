@@ -11,6 +11,10 @@
     <%= f.collection_select :route_id, Route.all, :id, :title %>
   </div>
   
+    <%= f.label :head_to_tail, "Отбражение вагонов" %>
+    <%= f.radio_button :head_to_tail, true %> С головы состава
+    <%= f.radio_button :head_to_tail, false %> С хвоста состава
+  
   <!--div class="field">
     <%= f.label :route, "Установить на станцию:" %>
     <%= f.collection_select :current_station_id, RailwayStation.all, :id, :title %>

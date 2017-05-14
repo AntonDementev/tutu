@@ -21,16 +21,16 @@
   <% end %>
 </p>
 
-<% coupe_waggons_info = @train.places_info(1) %>
-<% plazcard_waggons_info = @train.places_info(2) %>
+
 <p>
-Купейных вагонов: <%= coupe_waggons_info[:waggons_amount] %><br/>
-Плацкартных вагонов: <%= plazcard_waggons_info[:waggons_amount] %><br/>
-Верхних мест (купе): <%= coupe_waggons_info[:places_top] %><br/>
-Нижних мест (купе): <%= coupe_waggons_info[:places_bottom] %><br/>
-Верхних мест (плацкарт): <%= plazcard_waggons_info[:places_top] %><br/>
-Нижних мест (плацкарт): <%= plazcard_waggons_info[:places_bottom] %><br/>
-</p>
+<ul>
+Вагоны:
+
+  <% @train.sorted_waggons.each do |waggon| %>
+    <li><%= link_to "#{waggon.number} (#{waggon.type})", waggon_path(waggon) %></li>
+  <% end %>
+
+</ul></p>
 
 <%= link_to 'Edit', edit_train_path(@train) %> |
 <%= link_to 'Back', trains_path %>

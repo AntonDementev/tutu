@@ -1,6 +1,6 @@
 <h1>Изменение параметров вагона</h1>
 
-<%= render 'form', waggon: @waggon %>
+<%= render 'form', waggon: @waggon.becomes(Waggon) %>
 
-<%= link_to 'Show', @waggon %> |
+<%= link_to 'Show', waggon_path(@waggon) %> |
 <%= link_to 'Back', waggons_path %>

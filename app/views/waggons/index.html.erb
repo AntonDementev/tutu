@@ -5,13 +5,16 @@
 <table>
   <thead>
     <tr>
-      <th>Номер поезда</th>
+      <th>Поезд</th>
+      <th>Вагон</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
-    <%= render @waggons %>
+    <% @waggons.each do |waggon| %>
+      <%= render waggon.becomes(Waggon) %>
+    <% end %>
   </tbody>
 </table>
 
