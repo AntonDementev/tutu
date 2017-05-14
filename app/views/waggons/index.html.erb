@@ -13,7 +13,7 @@
 
   <tbody>
     <% @waggons.each do |waggon| %>
-      <%= render waggon_path(waggon) %>
+      <%= render waggon.becomes(Waggon) %>
     <% end %>
   </tbody>
 </table>
