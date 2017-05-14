@@ -9,7 +9,7 @@ class Waggon < ApplicationRecord
   
   def set_number
     if self.train.waggons.last.present?
-      self.number =  self.train.waggons.maximum(:number) + 1
+      self.number =  train.waggons.maximum(:number) + 1
     else
       self.number = 1
     end
