@@ -1,4 +1,4 @@
-<%= form_for(waggon) do |f| %>
+<%= form_for [@train, waggon] do |f| %>
   <%= render 'common/errors', res: waggon %>
 
   <div class="field">

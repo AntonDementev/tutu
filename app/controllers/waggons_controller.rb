@@ -1,5 +1,6 @@
 class WaggonsController < ApplicationController
   before_action :set_waggon, only: [:show, :edit, :update, :destroy]
+  before_action :set_train, only: [:new, :create]
 
   
   def index
@@ -18,10 +19,10 @@ class WaggonsController < ApplicationController
   end
 
   def create
-    @waggon = Waggon.new(waggon_params)
+    @waggon = @train.waggons.new(waggon_params)
 
     if @waggon.save
-      redirect_to waggon_path(@waggon), notice: 'Вагон был успешно создан.'
+      redirect_to @train, notice: 'Вагон был успешно создан.'
     else
       render :new
     end       
@@ -39,10 +40,15 @@ class WaggonsController < ApplicationController
 
   def destroy
     @waggon.destroy
-    redirect_to waggons_url, notice: 'Вагон был успешно удалён.'
+    redirect_to @waggon.train, notice: 'Вагон был успешно удалён.'
   end
 
   private
+    def set_train
+      @train = Train.find(params[:train_id])
+      
+    end
+  
     # Use callbacks to share common setup or constraints between actions.
     def set_waggon
       @waggon = Waggon.find(params[:id])

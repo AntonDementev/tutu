@@ -1,0 +1,39 @@
+<h1>Поиск билета</h1>
+
+<%= form_for(@search) do |f| %>
+  <%= render 'common/errors', res: @search %>
+  
+  <div class="field">
+    <%= f.label :begin_station, "Начальная станция:" %>
+    <%= f.collection_select :begin_station_id, RailwayStation.all, :id, :title %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :end_station, "Конечная станция:" %>
+    <%= f.collection_select :end_station_id, RailwayStation.all, :id, :title %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Поиск билетов" %>
+  </div>
+<% end %>
+
+<h2>Результаты поиска</h2>
+
+<% if result = @search.find_routes %>
+  Начальная станция: <%= @search.begin_station %><br/>
+  Конечная станция: <%= @search.end_station %><br/>
+  Найдено результатов: <%= result.size %>
+  <% result.each do |current_result| %>
+    <p>
+      Маршрут: <%= current_result[:route].title %><br/>
+      Начальная станция: <%= current_result[:begin_station].title %>, время отправления: <%= current_result[:begin_station].time_from_in_route(current_result[:route]) %><br/>
+      Конечная станция: <%= current_result[:end_station].title %>, время прибытия: <%= current_result[:end_station].time_to_in_route(current_result[:route]) %><br/>
+      <%= form_tag buy_ticket_search_path(@search) do %>
+        <%= submit_tag "Купить билет" %>
+      <% end %>
+    </p>
+  <% end %>
+<% else %>
+  Ничего не найдено
+<% end %>

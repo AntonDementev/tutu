@@ -23,6 +23,33 @@
     <ul><% @route.railway_stations_routes.order(:station_number_in_route).each do |station_route| %>
       <li><%= station_route.station_number_in_route %>. <%= station_route.railway_station.title %></li>
     <% end %></ul>
+    
+    <table>
+      <thead>
+      <tr>
+        <td width="100px">Название</td>
+        <td>Позиция</td>
+        <td>Время прибытия</td>
+        <td>Время отправления</td>
+      </tr>
+      </thead>
+      <tbody>
+        <% @route.railway_stations.ordered_by_number_in_route.each do |station| %>
+          <tr>
+            <td><%= station.title %></td>
+            
+              <%= form_tag update_number_in_route_railway_station_path(station), method: :patch do %>
+                <td><%= number_field_tag :number_in_route, station.number_in_route(@route) %></td>
+                <td><%= text_field_tag :time_to_station, station.time_to_in_route(@route) %></td>
+                <td><%= text_field_tag :time_from_station, station.time_from_in_route(@route) %></td>
+                <td><%= hidden_field_tag :route_id, @route.id %></td>
+                <td><%= submit_tag "Изменить" %></td>
+              <% end %>
+            
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   <% else %>
     Список станций этого маршрута пока ещё не задан
   <% end %>

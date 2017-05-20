@@ -27,10 +27,14 @@
 Вагоны:
 
   <% @train.sorted_waggons.each do |waggon| %>
-    <li><%= link_to "#{waggon.number} (#{waggon.type})", waggon_path(waggon) %></li>
+    <li><%= link_to "#{waggon.number} (#{waggon.type})", waggon_path(waggon) %> (<%= link_to 'Удалить', waggon_path(waggon), method: :delete, data: { confirm: 'Вы уверены?' } %>)</li>
   <% end %>
 
 </ul></p>
+
+<p>
+<%= link_to 'Добавить вагон', new_train_waggon_path(@train) %>
+</p>
 
 <%= link_to 'Edit', edit_train_path(@train) %> |
 <%= link_to 'Back', trains_path %>
