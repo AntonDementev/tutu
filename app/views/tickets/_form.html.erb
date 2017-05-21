@@ -1,9 +1,27 @@
 <%= form_for(ticket) do |f| %>
   <%= render 'common/errors', res: ticket %>
   
-  
+  <% if params[:train_id].nil? || params[:begin_station_id].nil? || params[:end_station_id].nil? %>
+    Сначала вопользуйтесь <%= link_to "поиском", search_path %> нужного билета.
+  <% else %>
+ 
+  <div class="field">
+    <%= f.label :passanger_name, 'ФИО пассажира' %>
+    <%= f.text_field :passanger_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :passport_data, 'Данные паспорта' %>
+    <%= f.text_field :passport_data %>
+  </div>
+
+  <%= f.hidden_field :train_id, value: params[:train_id] %>
+  <%= f.hidden_field :first_station_id, value: params[:begin_station_id] %>
+  <%= f.hidden_field :last_station_id, value: params[:end_station_id] %>
+  <%= f.hidden_field :user_id, value: 1 %>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Купить" %>
   </div>
+  <% end %>
 <% end %>

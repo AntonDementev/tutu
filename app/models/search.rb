@@ -12,6 +12,10 @@ class Search < ApplicationRecord
     end
   end
   
+  def create_new_ticket
+    
+  end
+  
   def find_routes
     @result = []
     begin_station = RailwayStation.all.where(id: begin_station_id).first

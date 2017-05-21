@@ -1,7 +1,12 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Билет</strong>
+  <strong>Билет</strong><br/>
+  На поезд №<%= @ticket.train.number %><br/>
+  ФИО пассажира: <%= @ticket.passanger_name %><br/>
+  Пасспорт: <%= @ticket.passport_data %><br/>
+  Начальная станция: <%= @ticket.first_station.title %>, время отправленя: <%= @ticket.first_station.time_from_in_route(@ticket.train.route) %><br/>
+  Конечная станция: <%= @ticket.last_station.title %>, время прибытия: <%= @ticket.last_station.time_to_in_route(@ticket.train.route) %><br/>
   
 </p>
 

@@ -29,9 +29,14 @@
       Маршрут: <%= current_result[:route].title %><br/>
       Начальная станция: <%= current_result[:begin_station].title %>, время отправления: <%= current_result[:begin_station].time_from_in_route(current_result[:route]) %><br/>
       Конечная станция: <%= current_result[:end_station].title %>, время прибытия: <%= current_result[:end_station].time_to_in_route(current_result[:route]) %><br/>
-      <%= form_tag buy_ticket_search_path(@search) do %>
-        <%= submit_tag "Купить билет" %>
+      
+      
+      Поезда:<br/>
+      <ul>
+      <% current_result[:route].trains.each do |train| %>
+        <li><%= train.number %>: <%= link_to "Купить билет", new_ticket_path(train_id: train.id, begin_station_id: current_result[:begin_station].id, end_station_id: current_result[:end_station].id) %></li>
       <% end %>
+      </ul>
     </p>
   <% end %>
 <% else %>

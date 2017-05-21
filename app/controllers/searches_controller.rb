@@ -12,9 +12,6 @@ class SearchesController < ApplicationController
     end
   end
   
-  def buy_ticket
-    
-  end
   
   private
   

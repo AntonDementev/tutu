@@ -7,11 +7,9 @@ Rails.application.routes.draw do
   end
   resources :routes
   
-  resource :search, only: [:show, :update] do
-    patch :buy_ticket, on: :member
-  end
+  resource :search, only: [:show, :update]
   
-  resources :tickets, only: [:new, :show, :index, :create]
+  resources :tickets, only: [:new, :show, :index, :create, :destroy]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
