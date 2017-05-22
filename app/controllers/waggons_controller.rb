@@ -45,8 +45,7 @@ class WaggonsController < ApplicationController
 
   private
     def set_train
-      @train = Train.find(params[:train_id])
-      
+      @train = Train.find(params[:train_id])      
     end
   
     # Use callbacks to share common setup or constraints between actions.
