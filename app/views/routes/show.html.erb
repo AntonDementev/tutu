@@ -40,8 +40,8 @@
             
               <%= form_tag update_number_in_route_railway_station_path(station), method: :patch do %>
                 <td><%= number_field_tag :number_in_route, station.number_in_route(@route) %></td>
-                <td><%= text_field_tag :time_to_station, station.time_to_in_route(@route) %></td>
-                <td><%= text_field_tag :time_from_station, station.time_from_in_route(@route) %></td>
+                <td><%= station.time_to_in_route(@route) %></td>
+                <td><%= station.time_from_in_route(@route) %></td>
                 <td><%= hidden_field_tag :route_id, @route.id %></td>
                 <td><%= submit_tag "Изменить" %></td>
               <% end %>

@@ -5,20 +5,12 @@ class TicketsController < ApplicationController
     @tickets = Ticket.all
   end
 
-
   def show
   end
   
-  def buy
-    @ticket = Ticket.new
-  end
-
-
   def new
     @ticket = Ticket.new
   end
-
-
 
   def create
     @ticket = Ticket.new(ticket_params)
@@ -30,11 +22,8 @@ class TicketsController < ApplicationController
     end
   end
 
-
-
   def destroy
     @ticket.destroy
-
     redirect_to tickets_url, notice: 'Билет был успешно удалён.'
   end
 

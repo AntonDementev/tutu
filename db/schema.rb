@@ -32,11 +32,6 @@ ActiveRecord::Schema.define(version: 20170520144831) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "searches", force: :cascade do |t|
-    t.integer "begin_station_id"
-    t.integer "end_station_id"
-  end
-
   create_table "tickets", force: :cascade do |t|
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false

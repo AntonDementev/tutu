@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   end
   resources :routes
   
-  resource :search, only: [:show, :update]
+  resource :search, only: [:show, :create, :new]
   
   resources :tickets, only: [:new, :show, :index, :create, :destroy]
 

@@ -11,7 +11,7 @@ class RailwayStation < ApplicationRecord
   
   def set_number_in_route(current_route, number)
     station_route = station_route(current_route)
-    station_route.update({station_number_in_route: number}) if station_route
+    station_route.update(station_number_in_route: number) if station_route
   end
   
   def set_time(current_route, time_to_station, time_from_station)

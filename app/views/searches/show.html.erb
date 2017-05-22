@@ -1,44 +1,39 @@
 <h1>Поиск билета</h1>
 
-<%= form_for(@search) do |f| %>
-  <%= render 'common/errors', res: @search %>
+<%= form_for search_path, method: :post do %>
+  
   
   <div class="field">
-    <%= f.label :begin_station, "Начальная станция:" %>
-    <%= f.collection_select :begin_station_id, RailwayStation.all, :id, :title %>
+    <%= label_tag :begin_station, "Начальная станция:" %>
+    <%= collection_select :search, :begin_station_id, RailwayStation.all, :id, :title %>
   </div>
   
   <div class="field">
-    <%= f.label :end_station, "Конечная станция:" %>
-    <%= f.collection_select :end_station_id, RailwayStation.all, :id, :title %>
+    <%= label_tag :end_station, "Конечная станция:" %>
+    <%= collection_select :search, :end_station_id, RailwayStation.all, :id, :title %>
   </div>
 
   <div class="actions">
-    <%= f.submit "Поиск билетов" %>
+    <%= submit_tag "Поиск билетов" %>
   </div>
 <% end %>
 
-<h2>Результаты поиска</h2>
+<% if @trains %>
+  <h2>Результаты поиска</h2>
 
-<% if result = @search.find_routes %>
-  Начальная станция: <%= @search.begin_station %><br/>
-  Конечная станция: <%= @search.end_station %><br/>
-  Найдено результатов: <%= result.size %>
-  <% result.each do |current_result| %>
+  Начальная станция: <%= @begin_station.title %><br/>
+  Конечная станция: <%= @end_station.title %><br/>
+  Найдено результатов: <%= @trains.size %>
+  <% @trains.each do |train| %>
     <p>
-      Маршрут: <%= current_result[:route].title %><br/>
-      Начальная станция: <%= current_result[:begin_station].title %>, время отправления: <%= current_result[:begin_station].time_from_in_route(current_result[:route]) %><br/>
-      Конечная станция: <%= current_result[:end_station].title %>, время прибытия: <%= current_result[:end_station].time_to_in_route(current_result[:route]) %><br/>
-      
-      
-      Поезда:<br/>
-      <ul>
-      <% current_result[:route].trains.each do |train| %>
-        <li><%= train.number %>: <%= link_to "Купить билет", new_ticket_path(train_id: train.id, begin_station_id: current_result[:begin_station].id, end_station_id: current_result[:end_station].id) %></li>
-      <% end %>
-      </ul>
+      Маршрут: <%= train.route.title %><br/>
+      Начальная станция: <%= @begin_station.title %>, время отправления: <%= @begin_station.time_from_in_route(train.route) %><br/>
+      Конечная станция: <%= @end_station.title %>, время прибытия: <%= @end_station.time_to_in_route(train.route) %><br/>
+      Номер поезда: <%= train.number %><br/><br/>
+      <%= link_to "Купить билет", new_ticket_path(train_id: train.id, begin_station_id: @begin_station.id, end_station_id: @end_station.id) %>     
     </p>
+    <hr/>
   <% end %>
 <% else %>
-  Ничего не найдено
+  
 <% end %>

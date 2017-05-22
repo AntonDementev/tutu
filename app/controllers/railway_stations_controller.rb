@@ -49,7 +49,6 @@ class RailwayStationsController < ApplicationController
   def update_number_in_route
     @route = Route.find(params[:route_id])
     @railway_station.set_number_in_route(@route, params[:number_in_route])
-    @railway_station.set_time(@route, params[:time_to_station], params[:time_from_station])
     redirect_to @route
   end
 
